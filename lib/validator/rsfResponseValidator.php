@@ -74,7 +74,7 @@
      */
     public function __construct (sfWebBrowser $arg_browser, $arg_filter = self::FILTER_INFO, $arg_delay = 1000)
     {
-      $Browser->setUserAgent(sprintf('rsfResponseValidator %s (CURL)', self::VERSION));
+      $arg_browser->setUserAgent(sprintf('rsfResponseValidator %s (CURL)', self::VERSION));
 
       $this->setBrowser($arg_browser);
       $this->setFilter($arg_filter);
@@ -373,7 +373,7 @@
      */
     public function setDelay ($arg_delay)
     {
-      if ( ! is_int($arg_delay) || 0 < $arg_delay)
+      if ( ! is_int($arg_delay) && 0 < $arg_delay)
       {
         throw new InvalidArgumentException('Delay should be a positive integer');
       }

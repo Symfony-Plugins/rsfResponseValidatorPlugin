@@ -22,6 +22,10 @@ SVN:
 
     $ svn propset externals sfPaymentPlugin http://svn.symfony-project.com/rsfResponseValidatorPlugin/trunk
 
+After downloading the source code you should clear your symfony cache:
+
+    $ php symfony cache:clear --type="config"
+
 ### Configuration
 
 Before you can use the plugin you need to configure it properly.
