@@ -38,8 +38,12 @@
     {
       parent::__construct($browser, $tester);
 
-      $this->_responseValidatorXhtml = new rsfResponseValidatorXhtml(new sfWebBrowser());
-      $this->_responseValidatorCss   = new rsfResponseValidatorCss(new sfWebBrowser());
+      $browserClass = sfConfig::get('app_response_validator_web_browser_class', 'sfWebBrowser');
+      $xhtmlBrowser = new $browserClass();
+      $cssBrowser   = new $browserClass();
+
+      $this->_responseValidatorXhtml = new rsfResponseValidatorXhtml($xhtmlBrowser, sfConfig::get('app_response_validator_xhtml_validation_uri'));
+      $this->_responseValidatorCss   = new rsfResponseValidatorCss($cssBrowser, sfConfig::get('app_response_validator_css_validation_uri'));
     }
 
     /**
@@ -47,7 +51,7 @@
      *
      * @return  sfTester  The appropriate tester object.
      */
-    public function validateResponse ()
+    public function isValidResponse ()
     {
       return $this->isValidXhtml()
                   ->isValidCss();

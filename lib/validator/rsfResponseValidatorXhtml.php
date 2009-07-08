@@ -14,9 +14,28 @@
   {
 
     /**
-     * @var string  The uri for validator webservice.
+     * Validator construction.
+     *
+     * @param   sfWebBrowser  $arg_browser      The browser object to use to
+     *                                          execute api requests.
+     * @param   integer       $arg_validatorUri The validation filter level.
+     * @param   integer       $arg_filter       The validation filter level.
+     * @param   integer       $arg_delay        The delay to use between
+     *                                          consecutive requests to the 
+     *                                          validator in miliseconds.
+     *
+     * @return  void
+     *
+     * @see     setBrowser
+     * @see     setFilter
+     * @see     setDelay
      */
-    const VALIDATOR_URI = 'http://validator.w3.org/check';
+    public function __construct (sfWebBrowser $arg_browser, $arg_validatorUri = NULL, $arg_filter = self::FILTER_INFO, $arg_delay = 1000)
+    {
+      parent::__construct($arg_browser, $arg_filter, $arg_delay);
+
+      $this->setValidatorUri(NULL === $arg_validatorUri ? 'http://validator.w3.org/check' : $arg_validatorUri);
+    }
 
     /**
      * Validate the response content.
@@ -28,16 +47,6 @@
     public function execute ()
     {
       parent::execute();
-    }
-
-    /**
-     * Get the URI of the validator to use.
-     *
-     * @return  string The validator service URI.
-     */
-    public function getValidatorUri ()
-    {
-      return self::VALIDATOR_URI;
     }
 
     /**

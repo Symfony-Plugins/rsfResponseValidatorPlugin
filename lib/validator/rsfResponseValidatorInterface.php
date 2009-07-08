@@ -67,13 +67,6 @@
     public function getWarnings ();
 
     /**
-     * Get the URI of the validator to use.
-     *
-     * @return  string The validator service URI.
-     */
-    public function getValidatorUri ();
-
-    /**
      * Get the filter level for the validator.
      *
      * @return  integer The filter level for the validator.
@@ -110,6 +103,13 @@
      *                  service.
      */
     public function getCharset ();
+
+    /**
+     * Get the validator webservice URI
+     *
+     * @return  string  The validator webservice URI.
+     */
+    public function getValidatorUri ();
 
     /**
      * Set the filter level for the validator.
@@ -159,5 +159,14 @@
      * @return  void
      */
     public function setCharset ($arg_charset);
+
+    /**
+     * Get the validator webservice URI
+     *
+     * @param  string  $arg_validatorUri  The validator webservice URI.
+     *
+     * @return void
+     */
+    public function setValidatorUri ($arg_validatorUri);
 
   }

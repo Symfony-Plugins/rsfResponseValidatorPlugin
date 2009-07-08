@@ -19,20 +19,22 @@
     /**
      * @var array The response headers of the validation service.
      */
-    protected $_responseHeaders = array('X-W3C-Validator-Recursion' => NULL,
-                                        'X-W3C-Validator-Status'    => NULL,
-                                        'X-W3C-Validator-Errors'    => NULL,
-                                        'X-W3C-Validator-Warnings'  => NULL);
+    protected $_responseHeaders = array('X-W3C-Validator-Recursion' => NULL
+                                       ,'X-W3C-Validator-Status'    => NULL
+                                       ,'X-W3C-Validator-Errors'    => NULL
+                                       ,'X-W3C-Validator-Warnings'  => NULL
+                                       );
 
     /**
      * @var array The validator parameters.
      */
-    protected $_parameters = array('filter'   => NULL,
-                                   'uri'      => NULL,
-                                   'document' => NULL,
-                                   'fragment' => NULL,
-                                   'output'   => 'soap12',
-                                   'charset'  => NULL);
+    protected $_parameters = array('filter'   => NULL
+                                  ,'uri'      => NULL
+                                  ,'document' => NULL
+                                  ,'fragment' => NULL
+                                  ,'output'   => 'soap12'
+                                  ,'charset'  => NULL
+                                  );
 
     /**
      * @var integer The delay to enforce between multiple consecutive requests.
@@ -49,6 +51,11 @@
      *              transaction occured
      */
     private $_latestTransaction = 0;
+
+    /**
+     * @var string  The uri for the validator.
+     */
+    private $_validatorUri;
 
     /**
      * @var DOMDocument The DOM document containing the SOAP response from the
@@ -320,6 +327,16 @@
     }
 
     /**
+     * Get the URI of the validator to use.
+     *
+     * @return  string The validator service URI.
+     */
+    public function getValidatorUri ()
+    {
+      return $this->_validatorUri;
+    }
+
+    /**
      * Set the latest transaction timestamp with microseconds.
      *
      * @param   integer $arg_timestamp  The transaction timestamp with miliseconds.
@@ -455,6 +472,23 @@
       }
 
       $this->_parameters['charset'] = $arg_charset;
+    }
+
+    /**
+     * Get the validator webservice URI
+     *
+     * @param  string  $arg_validatorUri  The validator webservice URI.
+     *
+     * @return void
+     */
+    public function setValidatorUri ($arg_validatorUri)
+    {
+      if ( ! is_string($arg_validatorUri))
+      {
+        throw new InvalidArgumentException('Validator URI should be a string value');
+      }
+
+      $this->_validatorUri = $arg_validatorUri;
     }
 
   }
