@@ -2,27 +2,45 @@
 <package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.4.1" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
   <name>rsfResponseValidatorPlugin</name>
   <channel>pear.symfony-project.com</channel>
-  <summary>##SUMMARY##</summary>
-  <description>##SUMMARY##</description>
+  <summary>Response validation plugin.</summary>
+  <description>Response validation plugin.</description>
   <lead>
-    <name>##LEAD_NAME##</name>
-    <user>##LEAD_USERNAME##</user>
-    <email>##LEAD_EMAIL##</email>
+    <name>Marijn Huizendveld</name>
+    <user>marijn</user>
+    <email>marijn@round84.com</email>
     <active>yes</active>
   </lead>
   <date>##CURRENT_DATE##</date>
   <version>
-    <release>##PLUGIN_VERSION##</release>
-    <api>##API_VERSION##</api>
+    <release>0.1</release>
+    <api>0.1</api>
   </version>
   <stability>
-    <release>##STABILITY##</release>
-    <api>##STABILITY##</api>
+    <release>alpha</release>
+    <api>alpha</api>
   </stability>
   <license uri="http://www.symfony-project.org/license">MIT license</license>
   <notes>-</notes>
   <contents>
-    ##CONTENTS##
+    <dir name="/">
+      <file role="data" name="README.markdown" />
+      <file role="data" name="LICENSE.markdown" />
+      
+      <dir name="config">
+        <file role="data" name="rsfResponseValidatorPluginConfiguration.php" />
+      </dir>
+      
+      <dir name="lib">
+        <file role="data" name="rsfTesterResponse.php" />
+        <dir name="validator">
+          <file role="data" name="rsfResponseValidator.php" />
+          <file role="data" name="rsfResponseValidatorCss.php" />
+          <file role="data" name="rsfResponseValidatorInterface.php" />
+          <file role="data" name="rsfResponseValidatorXhtml.php" />
+          <file role="data" name="rsfResponseValidatorXhtmlInterface.php" />
+        </dir>
+      </dir>
+    </dir>
   </contents>
   <dependencies>
     <required>
