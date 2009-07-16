@@ -23,7 +23,7 @@ or adding an `svn:externals` property to your SVN working copy.
 
 * **SVN:**
 
-        $ svn propset externals sfPaymentPlugin http://svn.symfony-project.com/rsfResponseValidatorPlugin/trunk
+        $ svn propedit svn:externals plugins rsfResponseValidatorPlugin http://svn.symfony-project.com/rsfResponseValidatorPlugin/trunk
 
 After downloading the source code you should clear your symfony cache:
 
