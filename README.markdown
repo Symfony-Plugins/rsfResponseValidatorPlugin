@@ -31,7 +31,7 @@ After downloading the source code you should clear your symfony cache:
 
 ### Configuration:
 
-Before you can use the plugin you need to configure it properly.
+Before you can use the plugin you need to configure it properly in `app.yml`.
 
     [yml]
     all:
