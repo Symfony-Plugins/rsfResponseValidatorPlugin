@@ -3,27 +3,27 @@
 >**Note**
 >**This plugin is still very much alpha release software, the API might change in the future!**
 
->**Note**
->**CSS validation is not yet supported**
-
 ## Requirements:
 
 * Symfony 1.2
-* `sfWebBrowserPlugin`
+* [`sfWebBrowserPlugin`](http://www.symfony-project.org/plugins/sfWebBrowserPlugin "Visit the sfWebBrowserPlugin page")
 
 ## Installation:
 
-During initial development no package file is available. You can install the 
-plugin by either downloading the source or adding an `svn:externals` property to
-your working copy.
+You can install the plugin with the symfony installer, by downloading the source
+or adding an `svn:externals` property to your SVN working copy.
 
-Download:
+* **Symfony:**
 
-    $ svn checkout http://svn.symfony-project.com/rsfResponseValidatorPlugin/trunk
+        $ symfony plugin:install rsfResponseValidatorPlugin
 
-SVN:
+* **Download:**
 
-    $ svn propset externals sfPaymentPlugin http://svn.symfony-project.com/rsfResponseValidatorPlugin/trunk
+        $ svn checkout http://svn.symfony-project.com/rsfResponseValidatorPlugin/trunk
+
+* **SVN:**
+
+        $ svn propset externals sfPaymentPlugin http://svn.symfony-project.com/rsfResponseValidatorPlugin/trunk
 
 After downloading the source code you should clear your symfony cache:
 
@@ -46,6 +46,9 @@ When you bootstrap your functional test browser add the customized response test
 
     [php]
     $browser = new sfTestFunctional(new sfBrowser(), array('response' => 'rsfTesterResponse'));    
+
+>**Note**
+>**CSS validation is not yet supported**
 
 Now you can call the `isValidXhtml()`, `isValidCss()` and `isValidResponse()`
 methods within the response context:

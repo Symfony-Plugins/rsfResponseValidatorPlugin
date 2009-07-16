@@ -3,7 +3,7 @@
   /**
    * Configuration for the rsfResponseValidatorPlugin.
    *
-   * @author    Marijn Huizendveld <marijn.huizendveld@round84.nl>
+   * @author    Marijn Huizendveld <marijn@round84.com>
    * @version   $Revision$ changed by $Author$
    *
    * @copyright Round 84 (2008 - 2009)
