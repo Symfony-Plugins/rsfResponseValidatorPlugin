@@ -29,14 +29,14 @@
     /**
      * Constructor.
      *
-     * @param   sfTestFunctionalBase $browser A browser.
-     * @param   lime_test            $tester  A tester object.
+     * @param   sfTestFunctionalBase $arg_browser A browser.
+     * @param   lime_test            $arg_tester  A tester object.
      *
      * @return  void
      */
-    public function __construct(sfTestFunctionalBase $browser, $tester)
+    public function __construct(sfTestFunctionalBase $arg_browser, $arg_tester)
     {
-      parent::__construct($browser, $tester);
+      parent::__construct($arg_browser, $arg_tester);
 
       $browserClass = sfConfig::get('app_response_validator_web_browser_class', 'sfWebBrowser');
       $xhtmlBrowser = new $browserClass();
@@ -64,24 +64,31 @@
      */
     public function isValidXhtml ()
     {
-      $this->_responseValidatorXhtml->setFragment($this->response->getContent());
-
-      try
+      if (sfConfig::get('app_response_validator_xhtml_validation', TRUE))
       {
-        $this->_responseValidatorXhtml->execute();
+        $this->_responseValidatorXhtml->setFragment($this->response->getContent());
 
-        $this->tester->pass('The response is valid HTML');
-      }
-      catch (sfException $exception)
-      {
-        $this->tester->fail('The response contains invalid HTML');
-
-        $this->tester->error($exception->getMessage());
-
-        foreach ($this->_responseValidatorXhtml->getErrors() as $key => $description)
+        try
         {
-          $this->tester->error(sprintf('Error %d: %s', $key + 1, ucfirst($description)));
+          $this->_responseValidatorXhtml->execute();
+
+          $this->tester->pass('The response is valid HTML');
         }
+        catch (sfException $exception)
+        {
+          $this->tester->fail('The response contains invalid HTML');
+
+          $this->tester->error($exception->getMessage());
+
+          foreach ($this->_responseValidatorXhtml->getErrors() as $key => $description)
+          {
+            $this->tester->error(sprintf('Error %d: %s', $key + 1, ucfirst($description)));
+          }
+        }
+      }
+      else
+      {
+        $this->tester->info('(X)HTML validation had been disabled.');
       }
 
       return $this->getObjectToReturn();
@@ -94,7 +101,14 @@
      */
     public function isValidCss ()
     {
-      $this->tester->info('CSS stylesheet validation is not yet implemented');
+      if (sfConfig::get('app_response_validator_css_validation', TRUE))
+      {
+        $this->tester->info('CSS stylesheet validation is not yet implemented');
+      }
+      else
+      {
+        $this->tester->info('CSS validation had been disabled.');
+      }
 
       return $this->getObjectToReturn();
     }
